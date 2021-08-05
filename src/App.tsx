@@ -16,7 +16,7 @@ function App() {
       <div>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li>
             <Link to="/about">About</Link>
@@ -27,6 +27,9 @@ function App() {
         </ul>
 
         <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
           <Route path="/about">
             <About />
           </Route>
@@ -41,7 +44,6 @@ function App() {
     </Router>
   );
 }
-
 
 function About() {
   return <h2>About</h2>;

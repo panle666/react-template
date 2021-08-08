@@ -13,15 +13,22 @@ export function Home() {
       setArrs(result.Data);
     }
     getData();
+    return () => { };
   });
 
+  let maps;
+  if (arrs && arrs.length > 0) {
+    maps = arrs?.map((item, index) => {
+      return <div key={index}>{item.Pic180}</div>;
+    })
+  }
   return (
     <div>
       <h1 className="test">home1 </h1>
       <div>{params.id}</div>
-      {arrs?.map((item, index) => {
-        return <div key={index}>{item.Pic180}</div>;
-      })}
+      {
+        maps
+      }
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Router, Link, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { routeConfigs } from "./router/routeConfigs";
@@ -30,8 +30,10 @@ function App() {
 }
 
 function RouteWithSubRoutes(route: IRouteConfig) {
+  useEffect(() => {
+    document.title = route.title;
+  })
   return (
-
     <Route
       path={route.path}
       render={(props) => (

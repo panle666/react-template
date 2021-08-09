@@ -1,13 +1,12 @@
-import { BaseApi } from "./base/BaseApi";
+import { baseApi } from "./base/baseApi";
 import { ILikeWare } from "./viewModel/ILikeWare";
 
-export default class HomeApi extends BaseApi {
+export default class homeApi extends baseApi {
   static async GetData() {
     const uri = "/DataPlatform/GetIndexGuessLikeProducts";
     const result = await super.get<ILikeWare[]>(
       uri
     );
-    debugger;
     return result;
   }
 }

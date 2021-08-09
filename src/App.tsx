@@ -1,89 +1,45 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Router, Link, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { Home } from "./home/home";
+import { routeConfigs } from "./router/routeConfigs";
+import { IRouteConfig } from "./router/IRouteConfig";
+import history from "./router/history";
 
 function App() {
   return (
-    <Router>
-      <div>
+    <div>
+      <Router history={history}>
         <ul>
           <li>
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
+            <Link to="/haha">HaHa</Link>
           </li>
         </ul>
-
-        <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/topics">
-            <Topics />
-          </Route>
-          <Route path={`/:id`}>
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Topics() {
-  let match = useRouteMatch();
-
-  return (
-    <div>
-      <h2>Topics</h2>
-
-      <ul>
-        <li>
-          <Link to={`${match.url}/components`}>Components</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-        </li>
-      </ul>
-
-      {/* The Topics page has its own <Switch> with more routes
-          that build on the /topics URL path. You can think of the
-          2nd <Route> here as an "index" page for all topics, or
-          the page that is shown when no topic is selected */}
-      <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
-        </Route>
-        <Route path={match.path}>
-          <h3>Please select a topic.</h3>
-        </Route>
-      </Switch>
+        <div>
+          <Switch>
+            {routeConfigs.map((item, index) => {
+              return <RouteWithSubRoutes key={index} {...item} />;
+            })}
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
 
-function Topic() {
-  let { topicId } = useParams<{ topicId: string }>();
-  return <h3>Requested topic ID: {topicId}</h3>;
+function RouteWithSubRoutes(route: IRouteConfig) {
+  return (
+
+    <Route
+      path={route.path}
+      render={(props) => (
+        // pass the sub-routes down to keep nesting
+        <route.component {...props} routes={route.children} />
+      )}
+    />
+  );
 }
 
 export default App;

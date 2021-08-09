@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { IApiResult } from "../viewModel/IApiResult";
-import { jsonp } from "./Jsonp";
+import { jsonp } from "./jsonp";
 
 interface RequestConfig extends AxiosRequestConfig {
   params?: object;
@@ -31,7 +31,7 @@ axios.interceptors.response.use(
 //   console.log("响应:", res.config.url, res);
 //   return res.data;
 // });
-export class BaseApi {
+export class baseApi {
   /**
    * 标准响应(IApiResult)的get请求用这个
    * @param uri 请求链接

@@ -6,6 +6,7 @@ export const HaHa = () => {
   }
   return (
     <div>
+      <div>环境变量：{process.env.NODE_ENV}</div>
       <div>haha</div>
       <div onClick={goHome}>goHome</div>
     </div>

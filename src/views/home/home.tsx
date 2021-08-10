@@ -13,7 +13,6 @@ export function Home() {
       const result = await homeApi.GetData();
       setArrs(result.Data);
     };
-    debugger;
     getData();
     return () => setArrs([]);
   }, []);

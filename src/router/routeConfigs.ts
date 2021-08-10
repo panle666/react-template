@@ -7,6 +7,7 @@ export const routeConfigs: IRouteConfig[] = [
     path: "/home",
     title: "home",
     component: Home,
+    isDev: true,
     //   children: [
     //     {
     //       path: "",

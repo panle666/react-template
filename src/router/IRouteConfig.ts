@@ -2,7 +2,7 @@ export interface IRouteConfig {
   /**
    * 是否开发调试页面
    */
-  // isDev?: boolean;
+  isDev?: boolean;
   path: string;
   component: any;
   title: string;

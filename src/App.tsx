@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { Router, Link, Route, Switch } from "react-router-dom";
+import { Router, Link, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import { routeConfigs } from "./router/routeConfigs";
 import { IRouteConfig } from "./router/IRouteConfig";
 import history from "./router/history";
 
 function App() {
+  let defaultPage;
+  const defaultConfig = routeConfigs.find((c) => c.isDev);
+  if (defaultConfig) {
+    defaultPage = <Redirect path="/" to={defaultConfig.path} />;
+  }
   return (
     <div>
       <Router history={history}>
@@ -22,6 +27,7 @@ function App() {
             {routeConfigs.map((item, index) => {
               return <RouteWithSubRoutes key={index} {...item} />;
             })}
+            {defaultPage}
           </Switch>
         </div>
       </Router>
@@ -32,7 +38,7 @@ function App() {
 function RouteWithSubRoutes(route: IRouteConfig) {
   useEffect(() => {
     document.title = route.title;
-  })
+  });
   return (
     <Route
       path={route.path}

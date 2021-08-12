@@ -1,5 +1,5 @@
-import { HaHa } from "../views/haha/haha";
-import { Home } from "../views/home/home";
+import { HaHa } from "../pages/haha/haha";
+import { Home } from "../pages/home/home";
 import { IRouteConfig } from "./IRouteConfig";
 
 export const routeConfigs: IRouteConfig[] = [
